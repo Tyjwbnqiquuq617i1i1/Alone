@@ -123,17 +123,20 @@ def remove_user(message):
         else:
             response = "𝙴𝚡𝚊𝚖𝚙𝚕𝚎 𝚝𝚘 𝚞𝚜𝚎: /remove <𝚞𝚜𝚎𝚛 𝚒𝚍>"
     else:
-        response = " ❌ 𝚢𝚘𝚞 𝚊𝚛𝚎 𝚗𝚘𝚝 𝚊𝚞𝚝𝚑𝚘𝚛𝚒𝚣𝚎𝚍 𝚘𝚗𝚕𝚢 𝚊𝚍𝚖𝚒𝚗 𝚞𝚜𝚎 @𝙶𝚘𝚍𝚡𝙰𝚕𝚘𝚗𝚎𝙱𝚘𝚢."
+        response = " ❌ 𝚢𝚘𝚞 𝚊𝚛𝚎 𝚗𝚘𝚝 𝚊𝚞𝚝𝚑𝚘𝚛𝚒𝚣𝚎𝚍 𝚘𝚗𝚕𝚢 𝚊𝚍𝚖𝚒𝚗 𝚞𝚜𝚎 @GODxAloneBOY."
     bot.reply_to(message, response)
 
 @bot.message_handler(commands=['bgmi'])
 def handle_bgmi(message):
+    if message is None or message.chat.id is None:
+        return  # Handle the case where message is invalid
+
     user_id = str(message.chat.id)
     if user_id in allowed_user_ids:
         if user_id not in ADMIN_ID and (user_id in bgmi_cooldown and (datetime.datetime.now() - bgmi_cooldown[user_id]).seconds < 0):
             bot.reply_to(message, "🚫 𝚢𝚘𝚞 𝚊𝚛𝚎 𝚘𝚗 𝚌𝚘𝚘𝚕𝚍𝚘𝚠𝚗 𝚠𝚊𝚒𝚝 𝚗𝚊𝚍 𝚝𝚛𝚢 𝚊𝚐𝚊𝚒𝚗 𝚕𝚊𝚝𝚎𝚛.")
             return
-        
+
         bgmi_cooldown[user_id] = datetime.datetime.now()
         command = message.text.split()
         if len(command) == 4:
@@ -150,7 +153,7 @@ def handle_bgmi(message):
         else:
             bot.reply_to(message, "𝚎𝚡𝚊𝚖𝚙𝚕𝚎 𝚝𝚘 𝚞𝚜𝚎: /bgmi <𝚝𝚊𝚛𝚐𝚎𝚝> <𝚙𝚎𝚛𝚝> <𝚍𝚞𝚛𝚊𝚝𝚘𝚒𝚗>")
     else:
-        bot.reply_to(message, "❌ 𝚢𝚘𝚞 𝚊𝚛𝚎 𝚗𝚘𝚝 𝚊𝚞𝚝𝚑𝚘𝚛𝚒𝚣𝚎𝚍 𝚙𝚕𝚎𝚊𝚜𝚎 𝚌𝚘𝚗𝚝𝚊𝚌𝚝 𝚝𝚘 𝚝𝚑𝚎 𝚘𝚠𝚗𝚎𝚛 @𝙶𝚘𝚍𝚡𝙰𝚕𝚘𝚗𝚎𝙱𝚘𝚢.")
+        bot.reply_to(message, "❌ 𝚢𝚘𝚞 𝚊𝚛𝚎 𝚗𝚘𝚝 𝚊𝚞𝚝𝚘𝚛𝚒𝚣𝚎𝚍 𝚙𝚕𝚎𝚊𝚜𝚎 𝚌𝚘𝚗𝚝𝚊𝚌𝚝 𝚝𝚘 𝚝𝚑𝚎 𝚘𝚠𝚗𝚎𝚛 @GODxAloneBOY.")
 
 @bot.message_handler(commands=['help'])
 def show_help(message):
