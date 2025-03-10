@@ -1,0 +1,37 @@
+name: Python CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  install-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository code
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Step 2: Set up Python
+      - name: Set up Python 3
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: |
+          pip install telebot flask aiogram pyTelegramBotAPI python-telegram-bot
+
+      # Step 4: Make files executable
+      - name: Make all files executable
+        run: chmod +x *
+
+      # Step 5: Run your Python script
+      - name: Run script
+        run: python3 m.py
